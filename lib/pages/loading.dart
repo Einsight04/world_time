@@ -14,10 +14,15 @@ class _LoadingState extends State<Loading> {
     // get request http://worldtimeapi.org/api/timezone/America/Toronto
     Response response =
         await get(Uri.parse("http://worldtimeapi.org/api/timezone/America/Toronto"));
-
     Map data = jsonDecode(response.body);
 
-    print(data);
+    // get properties from data
+    String datetime = data["datetime"];
+    String offset = data["utc_offset"].substring(1, 3);
+
+    print(datetime);
+    print(offset);
+
   }
 
   @override
