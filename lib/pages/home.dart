@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,8 +9,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context)!.settings.arguments as Map;
+
+    // print formatted date
+    String formattedDate = DateFormat.yMMMd().format(DateTime.now());
+    print(formattedDate);
+
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -19,7 +28,7 @@ class _HomeState extends State<Home> {
               Navigator.pushNamed(context, "/location");
             },
             icon: const Icon(Icons.edit_location),
-            label: const Text("Edit Location"),
+            label: Text(formattedDate),
           ),
         ],
       )),
